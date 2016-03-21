@@ -1,0 +1,23 @@
+== README
+
+This is a Ruby on Rails application to manage ISPMAIL:
+https://workaround.org/ispmail/jessie
+https://workaround.org/ispmail/jessie/ansible
+
+This is a work in progress.
+
+== TODO
+
+* Installation documentation
+
+* System dependencies
+
+* Configuration howto
+
+* Write test suite
+
+* Deployment instructions
+
+== LICENSE
+
+Everything in this repository can be freely used under the terms of the MIT license.

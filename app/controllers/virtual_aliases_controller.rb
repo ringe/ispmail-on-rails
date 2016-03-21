@@ -1,0 +1,2 @@
+class VirtualAliasesController < ApplicationController
+end

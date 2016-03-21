@@ -1,0 +1,2 @@
+class VirtualDomainsController < ApplicationController
+end

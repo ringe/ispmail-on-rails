@@ -1,0 +1,2 @@
+class VirtualUsersController < ApplicationController
+end
