@@ -1,12 +1,27 @@
 Rails.application.routes.draw do
-  resources :virtual_aliases
-  resources :virtual_users
-  resources :virtual_domains
+  get ":id/users", to: "virtual_users#index", as: :virtual_users, id: /\S+\.\S+/
+
+  resources :virtual_domains do
+    resources :virtual_users
+    resources :virtual_aliases
+  end
+
+
+  namespace :api do
+    resources :virtual_domains, :virtual_users, :virtual_aliases
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  constraints Clearance::Constraints::SignedIn.new do
+    root 'virtual_domains#index', as: :admin_root
+  end
+
+  constraints Clearance::Constraints::SignedOut.new do
+    root to: 'clearance/sessions#new'
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
