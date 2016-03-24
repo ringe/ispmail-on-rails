@@ -8,13 +8,20 @@ This is a work in progress.
 
 == TODO
 
+* SECURE THE API
+
 * Installation documentation
 
 * System dependencies
 
 * Configuration howto
+  - Set ActionMailer default URL
+  - Set database user and password
 
 * Write test suite
+  - valid domains created
+  - valid emails
+  - no changes without permission
 
 * Deployment instructions
 
