@@ -52,3 +52,6 @@ gem 'dotenv-rails'
 
 # Use ZURB Foundation CSS framework
 gem 'foundation-rails'
+
+# Use UnixCrypt to set VirtualUser passwords
+gem 'unix-crypt'
