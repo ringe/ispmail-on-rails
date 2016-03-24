@@ -1,14 +1,51 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>IspmailOnRails</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%= content_for?(:title) ? yield(:title) : "ISPmail" %></title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tag %>
 </head>
 <body>
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <ul class="menu">
+        <li class="menu-text">ISPmail</li>
+        <%= content_tag :li, link_to("Virtual domains", virtual_domains_path) %>
+      </ul>
+    </div>
 
-<%= yield %>
+    <div class="top-bar-right">
+      <ul class="menu">
+      <% if signed_in? -%>
+        <li><%= button_to t(".sign_out"), sign_out_path, method: :delete, class: "button" %></li>
+      <% end -%>
+      </ul>
+    </div>
+  </div>
+
+  <div class="reveal" id="messages" data-reveal>
+    <div id="flash" class="callout <%= flash.notice ? 'warning' : nil %>">
+      <% flash.each do |key, value| -%>
+        <div id="flash_<%= key %>"><%=h value %></div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="column row">
+    <%= yield %>
+  </div>
 
 </body>
 </html>
+<% unless flash.empty? -%>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#messages').foundation('open');
+    });
+  </script>
+<% end -%>

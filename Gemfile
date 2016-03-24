@@ -49,3 +49,6 @@ gem 'clearance'
 
 # Use environment variables for databases
 gem 'dotenv-rails'
+
+# Use ZURB Foundation CSS framework
+gem 'foundation-rails'

@@ -1,0 +1,6 @@
+@import "foundation";
+
+#clearance {
+  @include grid-column(3);
+  @include grid-column-position(center);
+}
