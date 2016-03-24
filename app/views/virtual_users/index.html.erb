@@ -1,0 +1,60 @@
+<div class="column row">
+    <h1>Virtual users for <%= @domain.name %></h1>
+
+    <%= form_for @virtual_user, url: api_virtual_users_path, remote: true do |f| %>
+      <div class="input-group">
+        <%= f.hidden_field :domain_id %>
+        <%= content_tag :span, "Add new virtual user", class: "input-group-label" %>
+        <%= f.text_field :email, class: "input-group-field", placeholder: "john@example.com" %>
+        <%= content_tag :span, "Password", class: "input-group-label" %>
+        <%= f.text_field :new_password, class: "input-group-field" %>
+        <%= content_tag :div, class: "input-group-button" do %>
+          <%= f.submit class: "button" %>
+        <% end %>
+      </div>
+    <% end # form %>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @domain.virtual_users.each do |user| %>
+          <tr id="virtual_user_<%= user.id %>">
+            <%= content_tag :td, user.email %>
+            <%= content_tag :td do %>
+              <%= link_to "Change", "#", "data-toggle" => "change_user_#{user.id}" %>
+              <div class="dropdown-pane top" id="<%= "change_user_#{user.id}" %>" data-dropdown data-close-on-click=true>
+                <%= link_to 'Delete', api_virtual_user_path(user), class: "button",
+                  method: :delete, remote: true, data: { confirm: "Are you sure?" } %>
+                <%= render partial: "password_form", locals: { virtual_user: user } %>
+              </div>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <script type="text/javascript">
+      $('form#new_virtual_user').bind('ajax:error', function(evt, data, status, xhr){
+        $("#messages").html(
+          '<div id="flash" class="callout warning">' +
+          '<div id="flash_notice">' +
+          data.responseJSON.toString() +
+          '</div></div>'
+        );
+        $('#messages').foundation('open');
+      })
+
+      $('form#new_virtual_user').bind('ajax:success', function(evt, data, status, xhr){
+        $("tbody").append("<tr><td>" + data.virtual_user.email + "</td></tr>");
+      })
+
+      $('[data-remote][data-method="delete"]').bind('ajax:success', function(evt, data, status, xhr){
+        $(evt.target).closest('tr').remove();
+      })
+    </script>
+</div>
