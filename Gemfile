@@ -46,3 +46,6 @@ group :development do
 end
 
 gem 'clearance'
+
+# Use environment variables for databases
+gem 'dotenv-rails'
