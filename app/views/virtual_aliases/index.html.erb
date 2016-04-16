@@ -1,0 +1,59 @@
+<div class="column row">
+    <h1>Virtual aliases for <%= @domain.name %></h1>
+
+    <%= form_for @virtual_alias, url: api_virtual_aliases_path, remote: true do |f| %>
+      <div class="input-group">
+        <%= f.hidden_field :domain_id %>
+        <%= content_tag :span, "Source", class: "input-group-label" %>
+        <%= f.text_field :source, class: "input-group-field", placeholder: "john@#{@domain.name}" %>
+        <%= content_tag :span, "Destination", class: "input-group-label" %>
+        <%= f.text_field :destination, class: "input-group-field", placeholder: "jill@#{@domain.name}" %>
+        <%= content_tag :div, class: "input-group-button" do %>
+          <%= f.submit class: "button" %>
+        <% end %>
+      </div>
+    <% end # form %>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Source</th>
+          <th>Destination</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @domain.virtual_aliases.each do |virtual_alias| %>
+          <tr id="virtual_alias_<%= virtual_alias.id %>">
+            <%= content_tag :td, virtual_alias.source %>
+            <%= content_tag :td, virtual_alias.destination %>
+            <%= content_tag :td do %>
+              <%= link_to 'Delete', api_virtual_alias_path(virtual_alias), class: "button",
+                method: :delete, remote: true, data: { confirm: "Are you sure?" } %>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <script type="text/javascript">
+      $('form#new_virtual_alias').bind('ajax:error', function(evt, data, status, xhr){
+        $("#messages").html(
+          '<div id="flash" class="callout warning">' +
+          '<div id="flash_notice">' +
+          data.responseJSON.join("<br/>") +
+          '</div></div>'
+        );
+        $('#messages').foundation('open');
+      })
+
+      $('form#new_virtual_alias').bind('ajax:success', function(evt, data, status, xhr){
+        $("tbody").append("<tr><td>" + data.virtual_alias.email + "</td></tr>");
+      })
+
+      $('[data-remote][data-method="delete"]').bind('ajax:success', function(evt, data, status, xhr){
+        $(evt.target).closest('tr').remove();
+      })
+    </script>
+</div>
+

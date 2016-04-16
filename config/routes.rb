@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   get ":id/users", to: "virtual_users#index", as: :virtual_users, id: /\S+\.\S+/
+  get ":id/aliases", to: "virtual_aliases#index", as: :virtual_aliases, id: /\S+\.\S+/
 
   resources :virtual_domains do
     resources :virtual_users
     resources :virtual_aliases
   end
-
 
   namespace :api do
     resources :virtual_domains, :virtual_users, :virtual_aliases

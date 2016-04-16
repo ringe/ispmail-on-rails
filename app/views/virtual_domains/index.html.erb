@@ -27,7 +27,8 @@
           <tr>
             <%= content_tag :td, link_to(domain.name, virtual_users_path(domain.name)) %>
             <%= content_tag :td, domain.does_resolve_to_host? %>
-            <%= content_tag :td, domain.virtual_users.count %>
+            <%= content_tag :td, link_to(domain.virtual_users.count, virtual_users_path(domain.name)) %>
+            <%= content_tag :td, link_to(domain.virtual_aliases.count, virtual_aliases_path(domain.name)) %>
             <%= content_tag :td do %>
               <%= link_to 'Delete', api_virtual_domain_path(domain),
                 method: :delete, remote: true, data: { confirm: "Are you sure?" } %>
