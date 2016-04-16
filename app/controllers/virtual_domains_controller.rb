@@ -1,6 +1,6 @@
 class VirtualDomainsController < ApplicationController
   def index
-    @domains = VirtualDomain.all
+    @domains = VirtualDomain.includes(:virtual_users).all
     @domain = VirtualDomain.new
   end
 end

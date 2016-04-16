@@ -16,6 +16,9 @@
       <thead>
         <tr>
           <th>Domain name</th>
+          <th>Does MX resolve here?</th>
+          <th>Number of users</th>
+          <th>Number of aliases</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -23,6 +26,8 @@
         <% @domains.each do |domain| %>
           <tr>
             <%= content_tag :td, link_to(domain.name, virtual_users_path(domain.name)) %>
+            <%= content_tag :td, domain.does_resolve_to_host? %>
+            <%= content_tag :td, domain.virtual_users.count %>
             <%= content_tag :td do %>
               <%= link_to 'Delete', api_virtual_domain_path(domain),
                 method: :delete, remote: true, data: { confirm: "Are you sure?" } %>
@@ -44,7 +49,10 @@
       })
 
       $('form#new_virtual_domain').bind('ajax:success', function(evt, data, status, xhr){
-        $("tbody").append("<tr><td>" + data.virtual_domain.name + "</td></tr>");
+        $("tbody").append(
+            "<tr><td><a href='/" + data.virtual_domain.name + "/users'>" +
+            data.virtual_domain.name + "</a>" +
+            "</td></tr>");
       })
 
       $('[data-remote][data-method="delete"]').bind('ajax:success', function(evt, data, status, xhr){
