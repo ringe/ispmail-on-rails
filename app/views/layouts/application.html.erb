@@ -30,11 +30,7 @@
   </div>
 
   <div class="reveal" id="messages" data-reveal data-show-flash="<%=!flash.empty?%>">
-    <div id="flash" class="callout <%= flash.notice ? 'warning' : nil %>">
-      <% flash.each do |key, value| -%>
-        <div id="flash_<%= key %>"><%=h value %></div>
-      <% end %>
-    </div>
+    <%= flash_messages flash.collect {|k,v| "<div class='callout #{k}'>#{v}</div>" }.join("\n").html_safe, !flash.alert.nil? %>
   </div>
 
   <div class="column row">
