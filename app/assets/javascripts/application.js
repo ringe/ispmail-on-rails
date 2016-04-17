@@ -18,4 +18,8 @@
 
 $(document).on('page:change',function(){
   $(document).foundation();
+
+  if ($('#messages')[0].attributes["data-show-flash"].value == "true") {
+    $('#messages').foundation('open');
+  }
 });

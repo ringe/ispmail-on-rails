@@ -28,7 +28,7 @@
     </div>
   </div>
 
-  <div class="reveal" id="messages" data-reveal>
+  <div class="reveal" id="messages" data-reveal data-show-flash="<%=!flash.empty?%>">
     <div id="flash" class="callout <%= flash.notice ? 'warning' : nil %>">
       <% flash.each do |key, value| -%>
         <div id="flash_<%= key %>"><%=h value %></div>
@@ -42,11 +42,3 @@
 
 </body>
 </html>
-<% unless flash.empty? -%>
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $(document).foundation();
-      $('#messages').foundation('open');
-    });
-  </script>
-<% end -%>
