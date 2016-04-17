@@ -42,15 +42,7 @@
     </table>
 
     <script type="text/javascript">
-      $('form#new_virtual_alias').bind('ajax:error', function(evt, data, status, xhr){
-        $("#messages").html(
-          '<div id="flash" class="callout warning">' +
-          '<div id="flash_notice">' +
-          data.responseJSON.join("<br/>") +
-          '</div></div>'
-        );
-        $('#messages').foundation('open');
-      })
+      <%= form_error_callout("new_virtual_alias") %>
 
       $('form#new_virtual_alias').bind('ajax:success', function(evt, data, status, xhr){
         $("tbody").append("<tr><td>" + data.virtual_alias.source +

@@ -44,15 +44,7 @@
     </table>
 
     <script type="text/javascript">
-      $('form#new_virtual_user').bind('ajax:error', function(evt, data, status, xhr){
-        $("#messages").html(
-          '<div id="flash" class="callout warning">' +
-          '<div id="flash_notice">' +
-          data.responseJSON.toString() +
-          '</div></div>'
-        );
-        $('#messages').foundation('open');
-      })
+      <%= form_error_callout("new_virtual_user") %>
 
       $('form#new_virtual_user').bind('ajax:success', function(evt, data, status, xhr){
         $("tbody").append("<tr><td>" + data.virtual_user.email + "</td></tr>");
