@@ -33,7 +33,7 @@
             <%= content_tag :td, virtual_alias.source %>
             <%= content_tag :td, virtual_alias.destination %>
             <%= content_tag :td do %>
-              <%= link_to 'Delete', api_virtual_alias_path(virtual_alias), class: "button",
+              <%= link_to 'Delete', api_virtual_alias_path(virtual_alias),
                 method: :delete, remote: true, data: { confirm: "Are you sure?" } %>
             <% end %>
           </tr>
@@ -53,7 +53,9 @@
       })
 
       $('form#new_virtual_alias').bind('ajax:success', function(evt, data, status, xhr){
-        $("tbody").append("<tr><td>" + data.virtual_alias.email + "</td></tr>");
+        $("tbody").append("<tr><td>" + data.virtual_alias.source +
+            "</td><td>" + data.virtual_alias.destination +
+            "</td></tr>");
       })
 
       $('[data-remote][data-method="delete"]').bind('ajax:success', function(evt, data, status, xhr){

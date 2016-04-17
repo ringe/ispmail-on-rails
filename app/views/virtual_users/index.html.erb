@@ -31,10 +31,10 @@
           <tr id="virtual_user_<%= user.id %>">
             <%= content_tag :td, user.email %>
             <%= content_tag :td do %>
-              <%= link_to "Change", "#", "data-toggle" => "change_user_#{user.id}" %>
+              <%= link_to "Delete", api_virtual_user_path(user), class: "warning",
+                method: :delete, remote: true, data: { confirm: "Are you sure?" } %>
+              <%= link_to "Change password", "#", "data-toggle" => "change_user_#{user.id}" %>
               <div class="dropdown-pane top" id="<%= "change_user_#{user.id}" %>" data-dropdown data-close-on-click=true>
-                <%= link_to 'Delete', api_virtual_user_path(user), class: "button",
-                  method: :delete, remote: true, data: { confirm: "Are you sure?" } %>
                 <%= render partial: "password_form", locals: { virtual_user: user } %>
               </div>
             <% end %>
