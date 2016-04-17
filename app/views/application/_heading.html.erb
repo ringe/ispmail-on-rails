@@ -1,0 +1,12 @@
+  <!-- domain-heading from application/_heading.html.erb -->
+  <div class="row domain-heading">
+    <div class="small-6 columns">
+      <h1>Virtual users for <%= @domain.name %></h1>
+    </div>
+    <div class="small-6 columns">
+      <p>
+        <%= @domain.name %> MX record does <b><%= "NOT" unless @domain.does_resolve_to_host? %></b> resolve to this server
+      <p>
+    </div>
+  </div>
+

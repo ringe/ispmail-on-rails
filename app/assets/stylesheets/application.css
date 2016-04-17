@@ -16,3 +16,6 @@
  *= require clearance
 
  */
+.domain-heading .columns p {
+  margin-top: 1.35em;
+}
