@@ -45,6 +45,7 @@ group :development do
   gem 'spring'
 end
 
+# Authentication
 gem 'clearance'
 
 # Use environment variables for databases
@@ -55,3 +56,6 @@ gem 'foundation-rails'
 
 # Use UnixCrypt to set VirtualUser passwords
 gem 'unix-crypt'
+
+# Look up TLD from IANA
+gem 'iana-data', require: 'iana'

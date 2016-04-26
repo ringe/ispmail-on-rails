@@ -15,7 +15,7 @@
     <div class="top-bar-left">
       <ul class="menu">
         <li class="menu-text">ISPmail for <%=Socket.gethostname %></li>
-        <%= content_tag :li, link_to(root_url, virtual_domains_path) %>
+        <%= content_tag :li, link_to("Virtual domains", virtual_domains_path) %>
         <%= yield(:menu) %>
       </ul>
     </div>
