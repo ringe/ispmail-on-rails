@@ -2,27 +2,32 @@
 
 This is a Ruby on Rails application to manage ISPMAIL:
 https://workaround.org/ispmail/jessie
-https://workaround.org/ispmail/jessie/ansible
+
+See ringe/ansible-ispmail-jessie for installation with Ansible.
+
+## Requirements
+
+You need MySQL to run this app. To run in production, have a look at the links above.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Unpack this gem in you destination folder, for instance
 
-```ruby
-gem 'ispmail-on-rails'
-```
+    $ cd /var/www
+    $ gem unpack ispmail-on-rails
+
+Add .env file with the following contents:
+
+    DB_USER=root
+    DB_PASSWORD=
 
 And then execute:
 
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install ispmail-on-rails
+    $ ./bin/setup
 
 ## Usage
 
-TODO: Write usage instructions here
+    $ bundle exec rails server
 
 ## Development
 
