@@ -1,6 +1,5 @@
 # Email domains
 class VirtualDomain < ActiveRecord::Base
-  self.table_name = "domains"
   validates :name, presence: true, uniqueness: true, domain_name: true
 
   has_many :virtual_users, foreign_key: :domain_id
