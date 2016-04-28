@@ -17,3 +17,5 @@
 # Ignore .env environment variables
 /.env
 /.byebug_history
+
+/*.gem
