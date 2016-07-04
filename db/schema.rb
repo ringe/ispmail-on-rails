@@ -13,14 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20160321133546) do
 
-  create_table "domains", force: :cascade do |t|
-    t.string   "name",       limit: 255, null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
-  add_index "domains", ["name"], name: "index_domains_on_name", unique: true, using: :btree
-
   create_table "users", force: :cascade do |t|
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
@@ -43,6 +35,14 @@ ActiveRecord::Schema.define(version: 20160321133546) do
 
   add_index "virtual_aliases", ["domain_id"], name: "index_virtual_aliases_on_domain_id", using: :btree
 
+  create_table "virtual_domains", force: :cascade do |t|
+    t.string   "name",       limit: 255, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "virtual_domains", ["name"], name: "index_virtual_domains_on_name", unique: true, using: :btree
+
   create_table "virtual_users", force: :cascade do |t|
     t.integer  "domain_id",  limit: 4,   null: false
     t.string   "password",   limit: 255, null: false
@@ -54,6 +54,6 @@ ActiveRecord::Schema.define(version: 20160321133546) do
   add_index "virtual_users", ["domain_id"], name: "index_virtual_users_on_domain_id", using: :btree
   add_index "virtual_users", ["email"], name: "index_virtual_users_on_email", unique: true, using: :btree
 
-  add_foreign_key "virtual_aliases", "domains", on_delete: :cascade
-  add_foreign_key "virtual_users", "domains", on_delete: :cascade
+  add_foreign_key "virtual_aliases", "virtual_domains", column: "domain_id", on_delete: :cascade
+  add_foreign_key "virtual_users", "virtual_domains", column: "domain_id", on_delete: :cascade
 end

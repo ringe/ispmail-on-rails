@@ -9,7 +9,7 @@ class CreateVirtualUsers < ActiveRecord::Migration
         t.timestamps null: false
       end
       add_index :virtual_users, :email, unique: true
-      add_foreign_key :virtual_users, :domains, on_delete: :cascade
+      add_foreign_key :virtual_users, :virtual_domains, column: :domain_id, on_delete: :cascade
     rescue
     end
   end

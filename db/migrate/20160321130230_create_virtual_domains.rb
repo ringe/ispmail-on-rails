@@ -6,7 +6,7 @@ class CreateVirtualDomains < ActiveRecord::Migration
 
         t.timestamps null: false
       end
-      add_index :domains, :name, unique: true
+      add_index :virtual_domains, :name, unique: true
     rescue
     end
   end

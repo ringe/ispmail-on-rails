@@ -1,7 +1,7 @@
   <!-- domain-heading from application/_heading.html.erb -->
   <div class="row domain-heading">
     <div class="small-6 columns">
-      <h1>Virtual users for <%= @domain.name %></h1>
+      <h1>Virtual <%= @virtual_user.nil? ? "aliases" : "users" %> for <%= @domain.name %></h1>
     </div>
     <div class="small-6 columns">
       <p>
