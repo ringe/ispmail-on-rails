@@ -3,7 +3,13 @@
 This is a Ruby on Rails application to manage ISPMAIL:
 https://workaround.org/ispmail/jessie
 
-See ringe/ansible-ispmail-jessie for installation with Ansible.
+See the [ispmail](ringe/ansible-ispmail-jessie) repo for installation with Ansible.
+
+## DISCONTINUED
+
+Please note that I will not develop this application further, as I have taken on a liking for [Mail-in-a-box](mail-in-a-box/mailinabox).
+
+Feel free to send PR and I will merge.
 
 ## Requirements
 
@@ -38,7 +44,6 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/ringe/ispmail-on-rails.
-
 
 ## License
 
