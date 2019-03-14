@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2.7.1'
+gem 'rails', '~> 4.2.11.1'
 # Use mysql as the database for Active Record
 gem 'mysql2'
 # Use SCSS for stylesheets
@@ -59,3 +59,6 @@ gem 'unix-crypt'
 
 # Look up TLD from IANA
 gem 'iana-data', require: 'iana'
+
+# Vulnerability dependency specifications
+gem "nokogiri", ">= 1.8.5"
